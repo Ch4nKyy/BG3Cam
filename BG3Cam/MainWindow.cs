@@ -98,10 +98,19 @@ namespace BG3Cam
         {
             while (running)
             {
-                if (Hotkeys.SinglePress(Keys.MButton)) prevMouseY = Cursor.Position.Y;
-                if (Hotkeys.IsPressed(Keys.MButton))
+                if (Hotkeys.IsPressed(Keys.Up) || Hotkeys.IsPressed(Keys.Down))
                 {
-                    var diff = Cursor.Position.Y - prevMouseY;
+                    var diff = 0.0f;
+
+                    if (Hotkeys.IsPressed(Keys.Up))
+                    {
+                        diff += 20.0f;
+                    }
+                    if (Hotkeys.IsPressed(Keys.Down))
+                    {
+                        diff -= 20.0f;
+                    }
+
                     if (diff != 0)
                     {
                         curTilt += diff * 0.05f;
